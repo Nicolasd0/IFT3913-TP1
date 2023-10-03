@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Tassert {
     public static void main(String[] args) throws Exception {
@@ -32,38 +34,53 @@ public class Tassert {
         );
         String currentLine;
         int tassert = 0;
-        boolean inMultiLine = false;
+        String data = "";
         do{
             currentLine = reader.readLine();
             if(currentLine != null){
-                //Line validation, make sure the line isn't commented
                 currentLine = currentLine.trim();
-                //Empty or single line comment
-                if(currentLine.isEmpty() || currentLine.startsWith("//")){
-                    continue;
-                } 
-                //Start of comment
-                if(currentLine.startsWith("/*")){
-                    inMultiLine = true;
-                    continue;
-                }
-                //End of comment
-                if(currentLine.endsWith("*/")){
-                    inMultiLine = false;
-                    continue;
-                }
-                
-                //Check if line contains an assert statement
-                if(!inMultiLine){
-                    for(int i = 0; i < assertions.size(); i++){
-                        if(currentLine.startsWith(assertions.get(i)))
-                            tassert++;
-                    }
-                }   
+                data += currentLine + "\n";
             }
         } while(currentLine != null);
 
         reader.close();
+
+        data = removeContentBetweenDelimiters(data, "/*", "*/");
+        data = removeContentBetweenDelimiters(data, "//", "\n");
+
+        for(int i = 0; i < assertions.size(); i++){
+            tassert += countOccurrencesRegex(data, assertions.get(i));
+        }
+        
         return tassert;
+
+    }
+
+    private static String removeContentBetweenDelimiters(String input, String startDelimiter, String endDelimiter) {
+        String patternString = Pattern.quote(startDelimiter) + ".*?" + Pattern.quote(endDelimiter);
+        Pattern pattern = Pattern.compile(patternString, Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(input);
+
+        StringBuffer result = new StringBuffer();
+        while (matcher.find()) {
+           // Preserve line breaks if they existed in the original input
+           String replacement = matcher.group().replaceAll("[^\n]", "");
+           matcher.appendReplacement(result, replacement);
+        }
+        matcher.appendTail(result);
+
+        return result.toString();
+    }
+
+    private static int countOccurrencesRegex(String input, String target) {
+        Pattern pattern = Pattern.compile(Pattern.quote(target));
+        Matcher matcher = pattern.matcher(input);
+
+        int count = 0;
+        while (matcher.find()) {
+            count++;
+        }
+
+        return count;
     }
 }

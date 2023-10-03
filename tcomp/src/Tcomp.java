@@ -45,11 +45,8 @@ public class Tcomp {
     }
 
     private static ArrayList<String> getPercentile(ArrayList<String> list, Double threshold){
-        ArrayList<String> target = new ArrayList<String>();
-        for(int i = 0; i < list.size() * threshold / 100.0; i++){
-            target.add(list.get(i));
-        }
-        return target;
+        int k = (int) Math.ceil(list.size() * threshold / 100.0);
+        return new ArrayList(list.subList(0, Math.min(k, list.size())));
     }
 
     private static ArrayList<String> getTcomp(String path, Double threshold) throws IOException{
