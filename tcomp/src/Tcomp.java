@@ -9,11 +9,22 @@ public class Tcomp {
         if(args.length < 2){
             throw new Error("Missing file path argument");
         }
-        ArrayList<String> tropcomp = getTcomp(args[1], Float.parseFloat(args[0]));
+        Double seuil = 0.0;
+        String output = "";
+        String path = "";
+        if(args.length == 2){
+            seuil = Double.parseDouble(args[1]);
+            path = args[0];
+        } else if(args.length == 4){
+            seuil = Double.parseDouble(args[3]);
+            path = args[2];
+            output = args[1];
+        }
+        ArrayList<String> tropcomp = getTcomp(path, seuil);
        
         //Print to file
-        if(args.length > 2){
-            writeToCSV(args[2], tropcomp);
+        if(output != ""){
+            writeToCSV(output, tropcomp);
         }
         //Print to console
         else{
@@ -24,7 +35,7 @@ public class Tcomp {
     }
 
     private static void writeToCSV(String path, ArrayList<String> data) throws IOException{
-        FileWriter fileWriter = new FileWriter(path);
+        FileWriter fileWriter = new FileWriter(path, false);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         for(int i = 0; i < data.size(); i++){
             bufferedWriter.write(data.get(i));
@@ -33,7 +44,7 @@ public class Tcomp {
         bufferedWriter.close();
     }
 
-    private static ArrayList<String> getPercentile(ArrayList<String> list, Float threshold){
+    private static ArrayList<String> getPercentile(ArrayList<String> list, Double threshold){
         ArrayList<String> target = new ArrayList<String>();
         for(int i = 0; i < list.size() * threshold / 100.0; i++){
             target.add(list.get(i));
@@ -41,18 +52,17 @@ public class Tcomp {
         return target;
     }
 
-    private static ArrayList<String> getTcomp(String path, Float threshold) throws IOException{
+    private static ArrayList<String> getTcomp(String path, Double threshold) throws IOException{
         try{
             ArrayList<String> tls_tloc = Tls.getTls(path);
-            System.out.println(tls_tloc.size());
-            ArrayList<String> tls_tcomp = new ArrayList<String>();
-            tls_tcomp = (ArrayList<String>)tls_tloc.clone();
+            ArrayList<String> tls_tcmp = new ArrayList<String>();
+            tls_tcmp = (ArrayList<String>)tls_tloc.clone();
 
             tls_tloc.sort((a, b) -> {
                 return Integer.parseInt(b.split(", ")[3]) - Integer.parseInt(a.split(", ")[3]);
             });
 
-            tls_tcomp.sort((a, b) -> {
+            tls_tcmp.sort((a, b) -> {
                 if(Float.parseFloat(a.split(", ")[5]) < Float.parseFloat(b.split(", ")[5])){
                     return 1;
                 } else{
@@ -61,7 +71,8 @@ public class Tcomp {
             });
 
             ArrayList<String> threshold_tls_tloc = getPercentile(tls_tloc, threshold);
-            ArrayList<String> threshold_tls_tcomp = getPercentile(tls_tcomp, threshold);
+            ArrayList<String> threshold_tls_tcomp = getPercentile(tls_tcmp, threshold);
+
             ArrayList<String> tropcomp = new ArrayList<String>();
 
             for(int i = 0; i < threshold_tls_tloc.size(); i++){

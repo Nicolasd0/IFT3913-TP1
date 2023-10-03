@@ -23,7 +23,13 @@ public class Tls {
         if(args.length < 1){
             throw new Error("Missing file path argument");
         }
-        ArrayList<String> csv = getTls(args[0]);
+
+        String path = args[0];
+        System.out.println(args[0]);
+        if(args[0].equals("-o")){
+            path = args[2];
+        }
+        ArrayList<String> csv = getTls(path);
        
         //Print to file
         if(args.length > 1){
