@@ -13,14 +13,14 @@ exemple avec tloc, c'est le même pour tout les fichiers.
 Mode d'utilisation des fichiers .jar
 - tloc.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tloc.jar PATH_TO_FILE
+  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tloc.jar PATH_TO_FILE
   Où PATH_TO_FILE est le chemin du fichier pour lequel vous voulez évaluer la mesure tloc.
   
   La sortie est la mesure tloc basé sur le fichier fournis en entrée.
 
 - tassert.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tassert.jar PATH_TO_FILE
+  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tassert.jar PATH_TO_FILE
   Où PATH_TO_FILE est le chemin du fichier pour lequel vous voulez évaluer la mesure tassert.
   
   La sortie est la mesure tassert basé sur le fichier fournis en entrée.
@@ -28,21 +28,21 @@ Mode d'utilisation des fichiers .jar
 
 - tls.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tassert.jar PATH_TO_FILE
+  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tassert.jar PATH_TO_FILE
   Où PATH_TO_FILE est le chemin du fichier pour lequel vous voulez compter la mesure tassert.
   
   La sortie est la mesure tassert basé sur le fichier fournis en entrée.
 
 - tls.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tls.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER
+  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tls.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER
   Où CSV_OUTPUT_PATH est le chemin optionnel du fichier csv pour la sortie du résultat.
   et PATH_TO_FILE est le chemin du dossier pour lequel vous voulez le tls.
 
   
 - tropcomp.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tcomp.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER SEUIL
+  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tcomp.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER SEUIL
   Où CSV_OUTPUT_PATH est le chemin optionnel du fichier csv pour la sortie du résultat.
   et PATH_TO_FILE est le chemin du dossier pour lequel vous voulez le tls
   et SEUIL est le seuil en pourcentage des fichiers qui pourrait être considéré comme trop compliqué.
