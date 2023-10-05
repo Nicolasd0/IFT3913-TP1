@@ -28,13 +28,6 @@ Mode d'utilisation des fichiers .jar
 
 - tls.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tassert.jar PATH_TO_FILE
-  Où PATH_TO_FILE est le chemin du fichier pour lequel vous voulez compter la mesure tassert.
-  
-  La sortie est la mesure tassert basé sur le fichier fournis en entrée.
-
-- tls.jar
-
   Commande à éxecuter dans le dossier contenant le fichier jar: java –jar Tls.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER
   Où CSV_OUTPUT_PATH est le chemin optionnel du fichier csv pour la sortie du résultat.
   et PATH_TO_FILE est le chemin du dossier pour lequel vous voulez le tls.
