@@ -57,7 +57,7 @@ public class Tls {
         for(int i = 0; i < files.size(); i++){
             String file_path = files.get(i);
             //Check for a test file
-            if(file_path.toLowerCase().contains("test")){
+            if(file_path.toLowerCase().endsWith("test.java")){
 
                 int tloc = Tloc.getTloc(file_path);
                 int tassert = Tassert.getTassert(file_path);

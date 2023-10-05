@@ -45,18 +45,21 @@ public class Tcomp {
     }
 
     private static ArrayList<String> getPercentile(ArrayList<String> list, Double threshold){
-        int k = (int) Math.ceil(list.size() * threshold / 100.0);
+        int k = (int) Math.ceil(length * threshold / 100);
         return new ArrayList(list.subList(0, Math.min(k, list.size())));
     }
 
     private static ArrayList<String> getTcomp(String path, Double threshold) throws IOException{
         try{
             ArrayList<String> tls_tloc = Tls.getTls(path);
+            
+            //Remove elements that don't include any unit tests
+            tls_tloc.removeIf((elem) -> Integer.parseInt(elem.split(", ")[4]) == 0);
             ArrayList<String> tls_tcmp = new ArrayList<String>();
             tls_tcmp = (ArrayList<String>)tls_tloc.clone();
 
             tls_tloc.sort((a, b) -> {
-                return Integer.parseInt(b.split(", ")[3]) - Integer.parseInt(a.split(", ")[3]);
+                return Integer.parseInt(a.split(", ")[3]) - Integer.parseInt(b.split(", ")[3]);
             });
 
             tls_tcmp.sort((a, b) -> {
@@ -66,7 +69,6 @@ public class Tcomp {
                     return -1;
                 }
             });
-
             ArrayList<String> threshold_tls_tloc = getPercentile(tls_tloc, threshold);
             ArrayList<String> threshold_tls_tcomp = getPercentile(tls_tcmp, threshold);
 

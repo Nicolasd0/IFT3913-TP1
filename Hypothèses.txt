@@ -1,0 +1,8 @@
+1- Les fichiers sans tests ne sont pas pris en compte lors du calcul de la métrique tcomp.
+
+2- Le ratio tcmp est arrondi vers le bas pour obtenir le même résultat que l'exemple dans l'énoncé.
+
+3- Pour le seuil, nous arrondissons le nombre de fichiers inclu dans celui-ci vers le haut. 
+Ex: 1% de 384 fichiers est 3.84 fichiers, donc 4 fichiers pour un seuil de 1%.
+
+4- Les paramètres doivent toujours avoir le même ordre et le paramètre de sortie doit toujours être précédé d'un "-o". 
