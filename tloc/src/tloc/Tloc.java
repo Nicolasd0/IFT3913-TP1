@@ -36,7 +36,7 @@ public class Tloc {
 
         //Count every line that isn't empty
         for(int i = 0; i < lines.length; i++){
-            if(lines[i].trim().length() != 0){
+            if(!lines[i].trim().isEmpty()){
                 tloc++;
             }
         }
@@ -45,6 +45,7 @@ public class Tloc {
         return tloc;
     }
 
+    //Function that removes all content between delimiters except "\n" including the delimiters themselves
     public static String removeContentBetweenDelimiters(String input, String startDelimiter, String endDelimiter) {
         //Pattern matches the given delimiters
         String patternString = Pattern.quote(startDelimiter) + ".*?" + Pattern.quote(endDelimiter);

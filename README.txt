@@ -42,7 +42,7 @@ Mode d'utilisation des fichiers .jar
   
 - tropcomp.jar
 
-  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tropcomp.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER SEUIL
+  Commande à éxecuter dans le dossier contenant le fichier jar: java –jar tcomp.jar -o CSV_OUTPUT_PATH PATH_TO_FOLDER SEUIL
   Où CSV_OUTPUT_PATH est le chemin optionnel du fichier csv pour la sortie du résultat.
   et PATH_TO_FILE est le chemin du dossier pour lequel vous voulez le tls
   et SEUIL est le seuil en pourcentage des fichiers qui pourrait être considéré comme trop compliqué.

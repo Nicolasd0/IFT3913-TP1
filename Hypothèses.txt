@@ -5,4 +5,6 @@
 3- Pour le seuil, nous arrondissons le nombre de fichiers inclu dans celui-ci vers le haut. 
 Ex: 1% de 384 fichiers est 3.84 fichiers, donc 4 fichiers pour un seuil de 1%.
 
-4- Les paramètres doivent toujours avoir le même ordre et le paramètre de sortie doit toujours être précédé d'un "-o". 
+4- On ne considère pas les assertions commentés.
+
+5- Les paramètres doivent toujours avoir le même ordre et le paramètre de sortie doit toujours être précédé d'un "-o". 
